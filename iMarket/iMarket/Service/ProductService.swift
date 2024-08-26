@@ -6,19 +6,28 @@
 //
 
 import Foundation
+import Combine
+struct ProductResponse: Decodable {
+    let products: [Product]
+}
 
 class ProductService: ObservableObject {
-    @Published var products: [Product] = []
-    
+    @Published var products: [Product]
+
+    init(products: [Product] = []) {
+        self.products = products
+    }
+
     func fetchProducts() {
         guard let url = URL(string: "https://dummyjson.com/products") else { return }
-        
+
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data {
                 do {
-                    let productResponse = try JSONDecoder().decode([String: [Product]].self, from: data)
+                    // Decode the response into a ProductResponse object
+                    let productResponse = try JSONDecoder().decode(ProductResponse.self, from: data)
                     DispatchQueue.main.async {
-                        self.products = productResponse["products"] ?? []
+                        self.products = productResponse.products
                     }
                 } catch {
                     print("Error decoding: \(error)")
