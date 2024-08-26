@@ -14,6 +14,7 @@
 		821232882C7CB74D00313973 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821232872C7CB74D00313973 /* ProductService.swift */; };
 		8212328A2C7CB77300313973 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821232892C7CB77300313973 /* ContentView.swift */; };
 		8212328C2C7CB7A400313973 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8212328B2C7CB7A400313973 /* ProductDetailView.swift */; };
+		8212328E2C7CEDEC00313973 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8212328D2C7CEDEC00313973 /* TabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		821232872C7CB74D00313973 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		821232892C7CB77300313973 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8212328B2C7CB7A400313973 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
+		8212328D2C7CEDEC00313973 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				821232892C7CB77300313973 /* ContentView.swift */,
 				8212328B2C7CB7A400313973 /* ProductDetailView.swift */,
+				8212328D2C7CEDEC00313973 /* TabView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 				821232882C7CB74D00313973 /* ProductService.swift in Sources */,
 				821232862C7CB71F00313973 /* ProductModel.swift in Sources */,
 				821232742C7CB49B00313973 /* iMarketApp.swift in Sources */,
+				8212328E2C7CEDEC00313973 /* TabView.swift in Sources */,
 				8212328C2C7CB7A400313973 /* ProductDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

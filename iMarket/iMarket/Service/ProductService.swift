@@ -7,16 +7,9 @@
 
 import Foundation
 import Combine
-struct ProductResponse: Decodable {
-    let products: [Product]
-}
 
 class ProductService: ObservableObject {
-    @Published var products: [Product]
-
-    init(products: [Product] = []) {
-        self.products = products
-    }
+    @Published var products: [Product] = []
 
     func fetchProducts() {
         guard let url = URL(string: "https://dummyjson.com/products") else { return }
@@ -24,7 +17,6 @@ class ProductService: ObservableObject {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data {
                 do {
-                    // Decode the response into a ProductResponse object
                     let productResponse = try JSONDecoder().decode(ProductResponse.self, from: data)
                     DispatchQueue.main.async {
                         self.products = productResponse.products
@@ -32,8 +24,16 @@ class ProductService: ObservableObject {
                 } catch {
                     print("Error decoding: \(error)")
                 }
+            } else if let error = error {
+                print("Network error: \(error.localizedDescription)")
             }
         }.resume()
     }
 }
 
+struct ProductResponse: Decodable {
+    let products: [Product]
+    let total: Int
+    let skip: Int
+    let limit: Int
+}

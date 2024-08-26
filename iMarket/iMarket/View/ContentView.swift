@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct ContentView: View {
     @StateObject private var productService = ProductService()
     @State private var searchText = ""
@@ -51,7 +53,7 @@ struct ProductRowView: View {
     var body: some View {
         HStack {
             // Thumbnail
-            AsyncImage(url: product.thumbnail) { image in
+            AsyncImage(url: URL(string: product.thumbnail)) { image in
                 image.resizable()
             } placeholder: {
                 Color.gray
@@ -69,7 +71,7 @@ struct ProductRowView: View {
                 Text("$\(product.price, specifier: "%.2f")")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
-                Text(product.category)
+                Text(product.category.capitalized)
                     .font(.caption)
                     .foregroundColor(.gray)
                     .padding(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 5))
@@ -103,25 +105,6 @@ struct ProductRowView: View {
             .padding(.leading, 5)
         }
         .padding(.vertical, 5)
-    }
-}
-
-struct ProductRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductRowView(product: Product(
-            id: 1,
-            title: "Essence Mascara Lash Princess",
-            price: 9.99,
-            thumbnail: URL(string: "https://example.com/mascara.jpg"),
-            description: "High-quality mascara.",
-            discountPercentage: 10.0,
-            rating: 4.5,
-            stock: 100,
-            brand: "Essence",
-            category: "Beauty"
-        ))
-        .previewLayout(.sizeThatFits)
-        .padding()
     }
 }
 
@@ -159,33 +142,8 @@ struct SearchBar: UIViewRepresentable {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let productService = ProductService(products: [
-            Product(
-                id: 1,
-                title: "Essence Mascara Lash Princess",
-                price: 9.99,
-                thumbnail: URL(string: "https://example.com/mascara.jpg"),
-                description: "High-quality mascara.",
-                discountPercentage: 10.0,
-                rating: 4.5,
-                stock: 100,
-                brand: "Essence",
-                category: "Beauty"
-            ),
-            Product(
-                id: 2,
-                title: "Eyeshadow Palette with Mirror",
-                price: 19.99,
-                thumbnail: URL(string: "https://example.com/eyeshadow.jpg"),
-                description: "A beautiful palette of eyeshadows.",
-                discountPercentage: 15.0,
-                rating: 4.8,
-                stock: 50,
-                brand: "BeautyBrand",
-                category: "Beauty"
-            )
-        ])
-        return ContentView()
-            .environmentObject(productService)
+        ContentView()
+            .environmentObject(ProductService()) // No mock data; real API call will happen
     }
 }
+
