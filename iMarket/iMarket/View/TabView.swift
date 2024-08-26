@@ -7,59 +7,39 @@
 
 import SwiftUI
 
+
 struct MainTabView: View {
-    @StateObject private var productService = ProductService()
+    @StateObject private var favoritesService = FavoritesService()
 
     var body: some View {
         TabView {
-            // Products Tab
             ContentView()
                 .tabItem {
-                    Label("Products", systemImage: "cart.fill")
+                    Image(systemName: "carrot.fill") // Replace with your custom icon
+                    Text("Products")
                 }
-                .environmentObject(productService)
-            
-            // My Items Tab
-            NavigationView {
-                VStack {
-                    Text("My Items View")
-                        .font(.title)
-                        .padding()
-                    
-                    // Placeholder content for My Items
-                    List {
-                        Text("Favorite Item 1")
-                        Text("Favorite Item 2")
-                        // Add more items as needed
-                    }
+                .environmentObject(favoritesService)  // Inject here
+
+            MyItemsView()
+                .tabItem {
+                    Image(systemName: "heart")
+                    Text("My Items")
                 }
-                .navigationTitle("My Items")
-            }
-            .tabItem {
-                Label("My Items", systemImage: "heart.fill")
-            }
-            
-            // Cart Tab
-            NavigationView {
-                VStack {
-                    Text("Cart View")
-                        .font(.title)
-                        .padding()
-                    
-                    // Placeholder content for Cart
-                    List {
-                        Text("Cart Item 1")
-                        Text("Cart Item 2")
-                        // Add more items as needed
-                    }
+                .environmentObject(favoritesService)  // Inject here
+
+            CartView()
+                .tabItem {
+                    Image(systemName: "cart")
+                    Text("Cart")
                 }
-                .navigationTitle("Cart")
-            }
-            .tabItem {
-                Label("Cart", systemImage: "cart.fill")
-            }
         }
+        .environmentObject(favoritesService)  // Inject globally here
     }
 }
 
 
+struct MainTabView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainTabView()
+    }
+}

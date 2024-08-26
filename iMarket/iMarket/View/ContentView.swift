@@ -7,18 +7,20 @@
 
 import SwiftUI
 
-import SwiftUI
 
 struct ContentView: View {
     @StateObject private var productService = ProductService()
+    @EnvironmentObject var favoritesService: FavoritesService
     @State private var searchText = ""
 
+
+    
     var body: some View {
         NavigationView {
             VStack {
                 // Search Bar
                 SearchBar(text: $searchText)
-                    .padding(.top, 10)
+                    
                     .padding(.horizontal)
                 
                 // Product List
@@ -26,14 +28,15 @@ struct ContentView: View {
                     NavigationLink(destination: ProductDetailView(product: product)) {
                         ProductRowView(product: product)
                     }
+                    .buttonStyle(PlainButtonStyle())  // Ensures no interference with buttons
                 }
                 .listStyle(PlainListStyle())
             }
             .onAppear {
                 productService.fetchProducts()
             }
-            .navigationTitle("Products")
-            .navigationBarTitleDisplayMode(.inline)
+            
+            
         }
     }
 
@@ -46,67 +49,7 @@ struct ContentView: View {
     }
 }
 
-// Product Row View
-struct ProductRowView: View {
-    let product: Product
 
-    var body: some View {
-        HStack {
-            // Thumbnail
-            AsyncImage(url: URL(string: product.thumbnail)) { image in
-                image.resizable()
-            } placeholder: {
-                Color.gray
-            }
-            .frame(width: 60, height: 60)
-            .cornerRadius(8)
-
-            VStack(alignment: .leading, spacing: 5) {
-                // Title
-                Text(product.title)
-                    .font(.headline)
-                    .lineLimit(1)
-
-                // Price and Category
-                Text("$\(product.price, specifier: "%.2f")")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                Text(product.category.capitalized)
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .padding(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 5))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-            }
-
-            Spacer()
-
-            // Add to Cart Button
-            Button(action: {
-                // Add to cart action
-            }) {
-                Text("Add to Cart")
-                    .font(.subheadline)
-                    .foregroundColor(.white)
-                    .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                    .background(Color.blue)
-                    .cornerRadius(5)
-            }
-
-            // Favorite Icon
-            Button(action: {
-                // Favorite action
-            }) {
-                Image(systemName: "heart")
-                    .foregroundColor(.gray)
-            }
-            .padding(.leading, 5)
-        }
-        .padding(.vertical, 5)
-    }
-}
 
 struct SearchBar: UIViewRepresentable {
     @Binding var text: String
@@ -130,6 +73,11 @@ struct SearchBar: UIViewRepresentable {
     func makeUIView(context: Context) -> UISearchBar {
         let searchBar = UISearchBar(frame: .zero)
         searchBar.delegate = context.coordinator
+
+        // Customize the search bar appearance
+        searchBar.backgroundImage = UIImage()  // Removes the background line
+        searchBar.placeholder = "What are you looking for?"  // Set the placeholder text
+
         return searchBar
     }
 
@@ -140,10 +88,13 @@ struct SearchBar: UIViewRepresentable {
 
 
 
+
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(ProductService()) // No mock data; real API call will happen
+            .environmentObject(ProductService())
+            .environmentObject(FavoritesService())
     }
 }
 

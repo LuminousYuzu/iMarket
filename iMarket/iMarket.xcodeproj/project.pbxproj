@@ -15,6 +15,10 @@
 		8212328A2C7CB77300313973 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821232892C7CB77300313973 /* ContentView.swift */; };
 		8212328C2C7CB7A400313973 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8212328B2C7CB7A400313973 /* ProductDetailView.swift */; };
 		8212328E2C7CEDEC00313973 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8212328D2C7CEDEC00313973 /* TabView.swift */; };
+		821232902C7D2DFD00313973 /* MyItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8212328F2C7D2DFD00313973 /* MyItemsView.swift */; };
+		821232922C7D2E1A00313973 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821232912C7D2E1A00313973 /* CartView.swift */; };
+		821232942C7D312900313973 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821232932C7D312900313973 /* FavoritesService.swift */; };
+		826386222C7D34B200A3ADC1 /* ProductRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826386212C7D34B200A3ADC1 /* ProductRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,10 @@
 		821232892C7CB77300313973 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8212328B2C7CB7A400313973 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		8212328D2C7CEDEC00313973 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		8212328F2C7D2DFD00313973 /* MyItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItemsView.swift; sourceTree = "<group>"; };
+		821232912C7D2E1A00313973 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		821232932C7D312900313973 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
+		826386212C7D34B200A3ADC1 /* ProductRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +96,12 @@
 		821232832C7CB6C200313973 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				821232892C7CB77300313973 /* ContentView.swift */,
-				8212328B2C7CB7A400313973 /* ProductDetailView.swift */,
 				8212328D2C7CEDEC00313973 /* TabView.swift */,
+				821232892C7CB77300313973 /* ContentView.swift */,
+				826386212C7D34B200A3ADC1 /* ProductRowView.swift */,
+				8212328B2C7CB7A400313973 /* ProductDetailView.swift */,
+				8212328F2C7D2DFD00313973 /* MyItemsView.swift */,
+				821232912C7D2E1A00313973 /* CartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -99,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				821232872C7CB74D00313973 /* ProductService.swift */,
+				821232932C7D312900313973 /* FavoritesService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -173,11 +185,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				821232942C7D312900313973 /* FavoritesService.swift in Sources */,
 				8212328A2C7CB77300313973 /* ContentView.swift in Sources */,
 				821232882C7CB74D00313973 /* ProductService.swift in Sources */,
 				821232862C7CB71F00313973 /* ProductModel.swift in Sources */,
 				821232742C7CB49B00313973 /* iMarketApp.swift in Sources */,
+				826386222C7D34B200A3ADC1 /* ProductRowView.swift in Sources */,
 				8212328E2C7CEDEC00313973 /* TabView.swift in Sources */,
+				821232902C7D2DFD00313973 /* MyItemsView.swift in Sources */,
+				821232922C7D2E1A00313973 /* CartView.swift in Sources */,
 				8212328C2C7CB7A400313973 /* ProductDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
