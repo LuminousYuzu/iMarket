@@ -11,32 +11,30 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var productService = ProductService()
     @EnvironmentObject var favoritesService: FavoritesService
+    @EnvironmentObject var cartService: CartService  // Inject CartService
     @State private var searchText = ""
 
-
-    
     var body: some View {
         NavigationView {
             VStack {
                 // Search Bar
                 SearchBar(text: $searchText)
-                    
                     .padding(.horizontal)
-                
+
                 // Product List
                 List(filteredProducts) { product in
                     NavigationLink(destination: ProductDetailView(product: product)) {
                         ProductRowView(product: product)
+                            .environmentObject(favoritesService)
+                            .environmentObject(cartService)
                     }
-                    .buttonStyle(PlainButtonStyle())  // Ensures no interference with buttons
+                    .buttonStyle(PlainButtonStyle())
                 }
                 .listStyle(PlainListStyle())
             }
             .onAppear {
                 productService.fetchProducts()
             }
-            
-            
         }
     }
 
@@ -48,8 +46,6 @@ struct ContentView: View {
         }
     }
 }
-
-
 
 struct SearchBar: UIViewRepresentable {
     @Binding var text: String
@@ -75,8 +71,8 @@ struct SearchBar: UIViewRepresentable {
         searchBar.delegate = context.coordinator
 
         // Customize the search bar appearance
-        searchBar.backgroundImage = UIImage()  // Removes the background line
-        searchBar.placeholder = "What are you looking for?"  // Set the placeholder text
+        searchBar.backgroundImage = UIImage()
+        searchBar.placeholder = "What are you looking for?"
 
         return searchBar
     }
@@ -86,15 +82,12 @@ struct SearchBar: UIViewRepresentable {
     }
 }
 
-
-
-
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(ProductService())
-            .environmentObject(FavoritesService())  
+            .environmentObject(FavoritesService())
+            .environmentObject(CartService())  
     }
 }
 

@@ -23,7 +23,7 @@ struct MyItemsView: View {
                     NavigationLink(destination: ProductDetailView(product: product)) {
                         ProductRowView(product: product)
                     }
-                    .buttonStyle(PlainButtonStyle())  // Ensures no interference with buttons
+                    .buttonStyle(PlainButtonStyle())
                 }
                 .navigationTitle("My Items")
             }
@@ -34,7 +34,7 @@ struct MyItemsView: View {
 struct MyItemsView_Previews: PreviewProvider {
     static var previews: some View {
         MyItemsView()
-            .environmentObject(FavoritesService())  // Inject the FavoritesService for preview
+            .environmentObject(FavoritesService()) 
     }
 }
 

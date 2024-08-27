@@ -19,6 +19,7 @@
 		821232922C7D2E1A00313973 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821232912C7D2E1A00313973 /* CartView.swift */; };
 		821232942C7D312900313973 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821232932C7D312900313973 /* FavoritesService.swift */; };
 		826386222C7D34B200A3ADC1 /* ProductRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826386212C7D34B200A3ADC1 /* ProductRowView.swift */; };
+		826386242C7D617000A3ADC1 /* CartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826386232C7D617000A3ADC1 /* CartService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		821232912C7D2E1A00313973 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		821232932C7D312900313973 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		826386212C7D34B200A3ADC1 /* ProductRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRowView.swift; sourceTree = "<group>"; };
+		826386232C7D617000A3ADC1 /* CartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				821232872C7CB74D00313973 /* ProductService.swift */,
 				821232932C7D312900313973 /* FavoritesService.swift */,
+				826386232C7D617000A3ADC1 /* CartService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				826386242C7D617000A3ADC1 /* CartService.swift in Sources */,
 				821232942C7D312900313973 /* FavoritesService.swift in Sources */,
 				8212328A2C7CB77300313973 /* ContentView.swift in Sources */,
 				821232882C7CB74D00313973 /* ProductService.swift in Sources */,
@@ -325,6 +329,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iMarket/Preview Content\"";
@@ -353,6 +358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iMarket/Preview Content\"";

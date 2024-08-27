@@ -7,11 +7,12 @@
 
 import SwiftUI
 
+
 // Product Row View
 struct ProductRowView: View {
     let product: Product
     @EnvironmentObject var favoritesService: FavoritesService
-        
+    @EnvironmentObject var cartService: CartService
 
     var body: some View {
         HStack {
@@ -34,6 +35,7 @@ struct ProductRowView: View {
                 Text("$\(product.price, specifier: "%.2f")")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
+                
                 Text(product.category.capitalized)
                     .font(.caption)
                     .foregroundColor(.gray)
@@ -42,33 +44,35 @@ struct ProductRowView: View {
                         RoundedRectangle(cornerRadius: 5)
                             .stroke(Color.gray, lineWidth: 1)
                     )
+                
+                // Add to Cart Button and Favorite Icon
+                HStack(spacing: 10) {
+                    Button(action: {
+                        cartService.addToCart(product)
+                    }) {
+                        Text("Add to Cart")
+                            .font(.subheadline)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 40)
+                            .padding(.vertical, 10)
+                            .background(Color.blue)
+                            .cornerRadius(30)
+                    }
+
+                    Button(action: {
+                        favoritesService.toggleFavorite(product)
+                    }) {
+                        Image(systemName: favoritesService.isFavorite(product) ? "heart.fill" : "heart")
+                            .foregroundColor(favoritesService.isFavorite(product) ? .red : .gray)
+                            .padding()
+                            .background(Color.gray.opacity(0.2))
+                            .clipShape(Circle())
+                    }
+                }
+                .padding(.top, 3)
             }
 
             Spacer()
-
-            // Favorite Icon and Add to Cart Button
-            VStack(alignment: .trailing, spacing: 10) {
-                Button(action: {
-                    favoritesService.toggleFavorite(product)
-                }) {
-                    
-                    Image(systemName: favoritesService.isFavorite(product) ? "heart.fill" : "heart")
-                        .foregroundColor(favoritesService.isFavorite(product) ? .red : .gray)
-                }
-
-                Button(action: {
-                    // Add to cart action
-                }) {
-                    Text("Add to Cart")
-                        .font(.subheadline)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 15)
-                        .padding(.vertical, 8)
-                        .background(Color.blue)
-                        .cornerRadius(5)
-                }
-                
-            }
         }
         .padding(.vertical, 8)
     }
@@ -103,8 +107,10 @@ struct ProductRowView_Previews: PreviewProvider {
         )
 
         ProductRowView(product: emptyProduct)
-            .environmentObject(FavoritesService())  // Inject an empty FavoritesService
+            .environmentObject(FavoritesService())
+            .environmentObject(CartService())
             .previewLayout(.sizeThatFits)
             .padding()
     }
 }
+

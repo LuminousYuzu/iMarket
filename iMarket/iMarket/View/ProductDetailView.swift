@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ProductDetailView: View {
     let product: Product
-    @EnvironmentObject var favoritesService: FavoritesService  // Inject FavoritesService
-    @State private var sortOption: SortOption = .highestToLowest  // Default sorting option
+    @EnvironmentObject var favoritesService: FavoritesService
+    @EnvironmentObject var cartService: CartService
+    @State private var sortOption: SortOption = .highestToLowest
 
     var body: some View {
         ScrollView {
@@ -73,7 +74,7 @@ struct ProductDetailView: View {
                 // Add to Cart Button and Favorite Button
                 HStack {
                     Button(action: {
-                        // Handle adding to cart
+                        cartService.addToCart(product)
                     }) {
                         Text("Add to Cart")
                             .bold()
@@ -91,7 +92,7 @@ struct ProductDetailView: View {
                             .foregroundColor(favoritesService.isFavorite(product) ? .red : .gray)
                             .padding()
                             .background(Color.white)
-                            .cornerRadius(10)
+                            .cornerRadius(30)
                     }
                 }
                 .padding(.horizontal)
@@ -200,9 +201,9 @@ struct ProductDetailView: View {
         case .lowestToHighest:
             return product.reviews.sorted { $0.rating < $1.rating }
         case .newestToOldest:
-            return product.reviews.sorted { $0.date > $1.date }  // Assuming date is Comparable
+            return product.reviews.sorted { $0.date > $1.date }
         case .oldestToNewest:
-            return product.reviews.sorted { $0.date < $1.date }  // Assuming date is Comparable
+            return product.reviews.sorted { $0.date < $1.date }
         }
     }
 }
@@ -247,6 +248,7 @@ struct ProductDetailView_Previews: PreviewProvider {
         )
 
         ProductDetailView(product: sampleProduct)
-            .environmentObject(FavoritesService())  // Inject FavoritesService for preview
+            .environmentObject(FavoritesService())  
     }
 }
+

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainTabView: View {
     @StateObject private var favoritesService = FavoritesService()
+    @StateObject private var cartService = CartService()  // Create CartService instance
 
     var body: some View {
         TabView {
@@ -17,23 +18,25 @@ struct MainTabView: View {
                     Image(systemName: "carrot.fill")
                     Text("Products")
                 }
-                .environmentObject(favoritesService)  // Inject FavoritesService here
+                .environmentObject(favoritesService)
+                .environmentObject(cartService)
 
             MyItemsView()
                 .tabItem {
                     Image(systemName: "heart")
                     Text("My Items")
                 }
-                .environmentObject(favoritesService)  // Inject FavoritesService here
+                .environmentObject(favoritesService)
 
             CartView()
                 .tabItem {
                     Image(systemName: "cart")
                     Text("Cart")
                 }
-                .environmentObject(favoritesService)  // Inject FavoritesService here
+                .environmentObject(cartService)
         }
-        .environmentObject(favoritesService)  // Inject FavoritesService here
+        .environmentObject(favoritesService)
+        .environmentObject(cartService)
     }
 }
 
@@ -42,6 +45,10 @@ struct MainTabView_Previews: PreviewProvider {
         MainTabView()
     }
 }
+
+
+
+
 
 
 
