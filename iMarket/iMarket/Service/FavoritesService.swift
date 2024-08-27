@@ -5,7 +5,7 @@
 //  Created by Kyle Liu on 2024/8/26.
 //
 
-import SwiftUI
+import Foundation
 import Combine
 
 class FavoritesService: ObservableObject {

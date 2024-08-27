@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProductDetailView: View {
     let product: Product
+    @EnvironmentObject var favoritesService: FavoritesService  // Inject FavoritesService
+    @State private var sortOption: SortOption = .highestToLowest  // Default sorting option
 
     var body: some View {
         ScrollView {
@@ -83,10 +85,10 @@ struct ProductDetailView: View {
                     }
 
                     Button(action: {
-                        // Handle favoriting the product
+                        favoritesService.toggleFavorite(product)
                     }) {
-                        Image(systemName: "heart")
-                            .foregroundColor(.gray)
+                        Image(systemName: favoritesService.isFavorite(product) ? "heart.fill" : "heart")
+                            .foregroundColor(favoritesService.isFavorite(product) ? .red : .gray)
                             .padding()
                             .background(Color.white)
                             .cornerRadius(10)
@@ -106,7 +108,7 @@ struct ProductDetailView: View {
                 }
                 .padding(.horizontal)
 
-                // Reviews Section
+                // Reviews Section with Sorting
                 if !product.reviews.isEmpty {
                     VStack(alignment: .leading, spacing: 10) {
                         HStack {
@@ -115,20 +117,43 @@ struct ProductDetailView: View {
 
                             Spacer()
 
-                            Button(action: {
-                                // Handle sorting reviews
-                            }) {
+                            // Sorting Button
+                            Menu {
+                                Button(action: {
+                                    sortOption = .highestToLowest
+                                }) {
+                                    Label("Highest to Lowest", systemImage: sortOption == .highestToLowest ? "checkmark" : "")
+                                }
+                                Button(action: {
+                                    sortOption = .lowestToHighest
+                                }) {
+                                    Label("Lowest to Highest", systemImage: sortOption == .lowestToHighest ? "checkmark" : "")
+                                }
+                                Button(action: {
+                                    sortOption = .newestToOldest
+                                }) {
+                                    Label("Newest to Oldest", systemImage: sortOption == .newestToOldest ? "checkmark" : "")
+                                }
+                                Button(action: {
+                                    sortOption = .oldestToNewest
+                                }) {
+                                    Label("Oldest to Newest", systemImage: sortOption == .oldestToNewest ? "checkmark" : "")
+                                }
+                            } label: {
                                 HStack {
                                     Image(systemName: "arrow.up.arrow.down")
                                     Text("Sort")
                                 }
                                 .font(.subheadline)
                                 .foregroundColor(.blue)
+                                .padding()
+                                .background(Color(.secondarySystemBackground))
+                                .cornerRadius(10)
                             }
                         }
                         .padding(.horizontal)
 
-                        ForEach(product.reviews, id: \.reviewerEmail) { review in
+                        ForEach(sortedReviews, id: \.reviewerEmail) { review in
                             VStack(alignment: .leading, spacing: 5) {
                                 HStack {
                                     Text(review.reviewerName)
@@ -165,5 +190,63 @@ struct ProductDetailView: View {
         }
         .navigationTitle(product.title)
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    // Computed property to return sorted reviews
+    var sortedReviews: [Review] {
+        switch sortOption {
+        case .highestToLowest:
+            return product.reviews.sorted { $0.rating > $1.rating }
+        case .lowestToHighest:
+            return product.reviews.sorted { $0.rating < $1.rating }
+        case .newestToOldest:
+            return product.reviews.sorted { $0.date > $1.date }  // Assuming date is Comparable
+        case .oldestToNewest:
+            return product.reviews.sorted { $0.date < $1.date }  // Assuming date is Comparable
+        }
+    }
+}
+
+// Enum for sorting options
+enum SortOption {
+    case highestToLowest
+    case lowestToHighest
+    case newestToOldest
+    case oldestToNewest
+}
+
+struct ProductDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        let sampleProduct = Product(
+            id: 1,
+            title: "Sample Product",
+            description: "This is a sample product description.",
+            category: "Category",
+            price: 9.99,
+            discountPercentage: 0.0,
+            rating: 4.5,
+            stock: 10,
+            tags: [],
+            brand: "Brand",
+            sku: "SKU",
+            weight: 0.5,
+            dimensions: Dimensions(width: 10.0, height: 20.0, depth: 5.0),
+            warrantyInformation: "1 Year Warranty",
+            shippingInformation: "Ships in 2 days",
+            availabilityStatus: "In Stock",
+            reviews: [
+                Review(rating: 5, comment: "Great product!", date: "2024-08-26", reviewerName: "John Doe", reviewerEmail: "john.doe@example.com"),
+                Review(rating: 3, comment: "It's okay.", date: "2024-07-15", reviewerName: "Jane Smith", reviewerEmail: "jane.smith@example.com"),
+                Review(rating: 1, comment: "Not good at all.", date: "2024-06-10", reviewerName: "Alice Johnson", reviewerEmail: "alice.johnson@example.com")
+            ],
+            returnPolicy: "30 days return policy",
+            minimumOrderQuantity: 1,
+            meta: nil,
+            thumbnail: "https://example.com/product.jpg",
+            images: []
+        )
+
+        ProductDetailView(product: sampleProduct)
+            .environmentObject(FavoritesService())  // Inject FavoritesService for preview
     }
 }

@@ -7,16 +7,34 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct MyItemsView: View {
     @EnvironmentObject var favoritesService: FavoritesService
 
     var body: some View {
         NavigationView {
-            List(favoritesService.favoriteItems) { product in
-                ProductRowView(product: product)
+            if favoritesService.favoriteItems.isEmpty {
+                Text("No favorite items yet.")
+                    .foregroundColor(.gray)
+                    .navigationTitle("My Items")
+            } else {
+                List(favoritesService.favoriteItems) { product in
+                    NavigationLink(destination: ProductDetailView(product: product)) {
+                        ProductRowView(product: product)
+                    }
+                    .buttonStyle(PlainButtonStyle())  // Ensures no interference with buttons
+                }
+                .navigationTitle("My Items")
             }
-            .navigationTitle("My Items")
         }
+    }
+}
+
+struct MyItemsView_Previews: PreviewProvider {
+    static var previews: some View {
+        MyItemsView()
+            .environmentObject(FavoritesService())  // Inject the FavoritesService for preview
     }
 }
 

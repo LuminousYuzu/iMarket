@@ -51,6 +51,7 @@ struct ProductRowView: View {
                 Button(action: {
                     favoritesService.toggleFavorite(product)
                 }) {
+                    
                     Image(systemName: favoritesService.isFavorite(product) ? "heart.fill" : "heart")
                         .foregroundColor(favoritesService.isFavorite(product) ? .red : .gray)
                 }
@@ -66,6 +67,7 @@ struct ProductRowView: View {
                         .background(Color.blue)
                         .cornerRadius(5)
                 }
+                
             }
         }
         .padding(.vertical, 8)

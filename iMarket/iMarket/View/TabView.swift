@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct MainTabView: View {
     @StateObject private var favoritesService = FavoritesService()
 
@@ -15,31 +14,34 @@ struct MainTabView: View {
         TabView {
             ContentView()
                 .tabItem {
-                    Image(systemName: "carrot.fill") // Replace with your custom icon
+                    Image(systemName: "carrot.fill")
                     Text("Products")
                 }
-                .environmentObject(favoritesService)  // Inject here
+                .environmentObject(favoritesService)  // Inject FavoritesService here
 
             MyItemsView()
                 .tabItem {
                     Image(systemName: "heart")
                     Text("My Items")
                 }
-                .environmentObject(favoritesService)  // Inject here
+                .environmentObject(favoritesService)  // Inject FavoritesService here
 
             CartView()
                 .tabItem {
                     Image(systemName: "cart")
                     Text("Cart")
                 }
+                .environmentObject(favoritesService)  // Inject FavoritesService here
         }
-        .environmentObject(favoritesService)  // Inject globally here
+        .environmentObject(favoritesService)  // Inject FavoritesService here
     }
 }
-
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
         MainTabView()
     }
 }
+
+
+
