@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainTabView: View {
     @StateObject private var favoritesService = FavoritesService()
-    @StateObject private var cartService = CartService()  // Create CartService instance
+    @StateObject private var cartService = CartService()  
 
     var body: some View {
         TabView {

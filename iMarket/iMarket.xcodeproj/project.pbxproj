@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		820A9FAB2C7EAA84009445D7 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820A9FAA2C7EAA84009445D7 /* SearchResultsView.swift */; };
 		821232742C7CB49B00313973 /* iMarketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821232732C7CB49B00313973 /* iMarketApp.swift */; };
 		821232782C7CB49C00313973 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821232772C7CB49C00313973 /* Assets.xcassets */; };
 		8212327B2C7CB49C00313973 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8212327A2C7CB49C00313973 /* Preview Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		820A9FAA2C7EAA84009445D7 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		821232702C7CB49B00313973 /* iMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		821232732C7CB49B00313973 /* iMarketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMarketApp.swift; sourceTree = "<group>"; };
 		821232772C7CB49C00313973 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				8212328B2C7CB7A400313973 /* ProductDetailView.swift */,
 				8212328F2C7D2DFD00313973 /* MyItemsView.swift */,
 				821232912C7D2E1A00313973 /* CartView.swift */,
+				820A9FAA2C7EAA84009445D7 /* SearchResultsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				826386242C7D617000A3ADC1 /* CartService.swift in Sources */,
+				820A9FAB2C7EAA84009445D7 /* SearchResultsView.swift in Sources */,
 				821232942C7D312900313973 /* FavoritesService.swift in Sources */,
 				8212328A2C7CB77300313973 /* ContentView.swift in Sources */,
 				821232882C7CB74D00313973 /* ProductService.swift in Sources */,
