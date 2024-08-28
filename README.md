@@ -10,6 +10,6 @@ Welcome to the iMarket iOS app, a modern and user-friendly application designed 
 | **Home View**            | <img src="Images/Home1.png" width="300px"> |
 | **Search Results View**  | <img src="Images/Search1.png" width="300px"> |
 | **Product Detail View**  | <img src="Images/Detail1.png" width="300px"> <img src="Images/Detail2.png" width="300px">|
-| **Favorites View**       | <img src="IImages/Fav1.png" width="300px"> |
+| **Favorites View**       | <img src="Images/Fav1.png" width="300px"> |
 | **Cart View**            | <img src="Images/Cart1.png" width="300px"> <img src="Images/Cart2.png" width="300px">|
 | **Search Bar Editing**   | <img src="Images/SearchBarEditing.png" width="300px"> |
