@@ -16,7 +16,7 @@ struct ProductRowView: View {
 
     var body: some View {
         HStack {
-            // Thumbnail
+         
             AsyncImage(url: URL(string: product.thumbnail)) { image in
                 image.resizable()
             } placeholder: {
@@ -26,12 +26,12 @@ struct ProductRowView: View {
             .cornerRadius(8)
 
             VStack(alignment: .leading, spacing: 5) {
-                // Title
+                
                 Text(product.title)
                     .font(.headline)
                     .lineLimit(1)
 
-                // Price and Category
+                
                 Text("$\(product.price, specifier: "%.2f")")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
@@ -45,7 +45,7 @@ struct ProductRowView: View {
                             .stroke(Color.gray, lineWidth: 1)
                     )
                 
-                // Add to Cart Button and Favorite Icon
+               
                 HStack(spacing: 10) {
                     Button(action: {
                         cartService.addToCart(product)
@@ -80,7 +80,7 @@ struct ProductRowView: View {
 
 struct ProductRowView_Previews: PreviewProvider {
     static var previews: some View {
-        // Create an empty product just for the sake of preview
+        
         let emptyProduct = Product(
             id: 0,
             title: "Sample Product",

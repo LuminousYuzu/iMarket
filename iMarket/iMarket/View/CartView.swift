@@ -25,7 +25,7 @@ struct CartView: View {
                             HStack {
                                 NavigationLink(destination: ProductDetailView(product: product)) {
                                     HStack {
-                                        // Display product thumbnail
+                                        
                                         AsyncImage(url: URL(string: product.thumbnail)) { image in
                                             image
                                                 .resizable()
@@ -51,7 +51,7 @@ struct CartView: View {
                                 }
                                 Spacer()
 
-                                // Remove from cart button
+                                
                                 Button(action: {
                                     cartService.removeFromCart(product)
                                 }) {
@@ -65,7 +65,7 @@ struct CartView: View {
                     }
                     .listStyle(PlainListStyle())
 
-                    // Expandable Order Summary
+                    
                     VStack {
                         HStack {
                             Text(String(format: "$%.2f total", cartService.totalPrice))

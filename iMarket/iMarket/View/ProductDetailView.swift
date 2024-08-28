@@ -16,7 +16,7 @@ struct ProductDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                // Product Image
+                
                 AsyncImage(url: URL(string: product.thumbnail)) { image in
                     image
                         .resizable()
@@ -29,14 +29,14 @@ struct ProductDetailView: View {
                 .cornerRadius(10)
                 .padding(.horizontal)
 
-                // Product Title and Rating
+                
                 VStack(alignment: .leading, spacing: 5) {
                     Text(product.title)
                         .font(.title2)
                         .fontWeight(.bold)
 
                     HStack(spacing: 5) {
-                        // Display stars based on the rating
+                       
                         ForEach(0..<5) { index in
                             Image(systemName: index < Int(product.rating) ? "star.fill" : "star")
                                 .foregroundColor(.yellow)
@@ -53,7 +53,7 @@ struct ProductDetailView: View {
                 }
                 .padding(.horizontal)
 
-                // Price and Availability
+                
                 Text("$\(product.price, specifier: "%.2f")")
                     .font(.title)
                     .fontWeight(.bold)
@@ -65,13 +65,13 @@ struct ProductDetailView: View {
                     .foregroundColor(product.stock > 0 ? .green : .red)
                     .padding(.horizontal)
 
-                // Location (Fixed value for now)
+                
                 Text("at Cupertino")
                     .font(.subheadline)
                     .foregroundColor(.blue)
                     .padding(.horizontal)
 
-                // Add to Cart Button and Favorite Button
+                
                 HStack {
                     Button(action: {
                         cartService.addToCart(product)
@@ -97,7 +97,7 @@ struct ProductDetailView: View {
                 }
                 .padding(.horizontal)
 
-                // Description Section
+                
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Description")
                         .font(.headline)
@@ -109,7 +109,7 @@ struct ProductDetailView: View {
                 }
                 .padding(.horizontal)
 
-                // Reviews Section with Sorting
+                
                 if !product.reviews.isEmpty {
                     VStack(alignment: .leading, spacing: 10) {
                         HStack {
@@ -118,7 +118,7 @@ struct ProductDetailView: View {
 
                             Spacer()
 
-                            // Sorting Button
+                            
                             Menu {
                                 Button(action: {
                                     sortOption = .highestToLowest
@@ -193,7 +193,7 @@ struct ProductDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 
-    // Computed property to return sorted reviews
+    
     var sortedReviews: [Review] {
         switch sortOption {
         case .highestToLowest:
@@ -208,7 +208,7 @@ struct ProductDetailView: View {
     }
 }
 
-// Enum for sorting options
+
 enum SortOption {
     case highestToLowest
     case lowestToHighest

@@ -24,7 +24,7 @@ struct ContentView: View {
                     .padding(.horizontal)
 
                 if isEditing {
-                    // Show search results when editing
+                    
                     SearchResultsView(searchText: $searchText, productService: productService)
                 } else {
                     // Product List
@@ -32,7 +32,7 @@ struct ContentView: View {
                         NavigationLink(destination: ProductDetailView(product: product)) {
                             ProductRowView(product: product)
                         }
-                        .buttonStyle(PlainButtonStyle())  // Ensures no interference with buttons
+                        .buttonStyle(PlainButtonStyle())
                     }
                     .listStyle(PlainListStyle())
                 }
@@ -67,7 +67,7 @@ struct SearchBar: UIViewRepresentable {
 
         func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
             isEditing = true
-            searchBar.becomeFirstResponder() // Ensure the search bar becomes the first responder
+            searchBar.becomeFirstResponder()
         }
 
         func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -84,7 +84,7 @@ struct SearchBar: UIViewRepresentable {
         }
 
         func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-            searchBar.resignFirstResponder() // Hide the keyboard on cancel
+            searchBar.resignFirstResponder()
             isEditing = false
             text = ""
         }
@@ -99,7 +99,7 @@ struct SearchBar: UIViewRepresentable {
         searchBar.delegate = context.coordinator
         searchBar.placeholder = "What are you looking for?"
         searchBar.backgroundImage = UIImage()
-        searchBar.showsCancelButton = true // Show the cancel button to easily dismiss the keyboard
+        searchBar.showsCancelButton = true 
 
         return searchBar
     }
