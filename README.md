@@ -1,4 +1,4 @@
-<img src="Images/Icon.jpg" width="150px">
+<img src="Images/Icon.jpg" width="136px" style="border-radius: 20%;">
 
 ### Introduction
 
